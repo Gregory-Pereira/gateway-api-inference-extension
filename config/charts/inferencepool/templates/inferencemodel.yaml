@@ -1,0 +1,15 @@
+{{ include "gateway-api-inference-extension.validations.inferencepool.common" $ }}
+{{- if .Values.inferenceModel.enabled }}
+apiVersion: inference.networking.x-k8s.io/v1alpha2
+kind: InferenceModel
+metadata:
+  name: {{ .Values.inferenceModel.nameOverride | default .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "gateway-api-inference-extension.labels" . | nindent 4 }}
+spec:
+  criticality: {{ .Values.inferenceModel.criticality }}
+  modelName: {{ .Values.inferenceModel.modelName }}
+  poolRef:
+    name: {{ .Values.inferenceModel.poolRefNameOverride | default .Release.Name }}
+{{- end}}

@@ -48,6 +48,16 @@ inferencePool:
   #   matchLabels:
   #     app: vllm-llama3-8b-instruct
 
+inferenceModel:
+  # -- should the optional inference model be created
+  enabled: false
+  # -- override the name of the inference model instead of the default release name
+  nameOverride: ""
+  # -- specify the criticality of the inference model
+  criticality: Critical
+  # -- override the name of the inferencepool as the parent of the inference model instead of default release name
+  poolRefNameOverride: ""
+
 provider:
   name: none
 
